@@ -16,10 +16,11 @@ fn get_accent_color() -> Vec<u8> {
     }; // this can return an error
 
     let argb = hex::decode(format!("{:X}", colorization)).unwrap();
-    println!("{:?}", argb);
     argb
 }
 
+use std::thread::sleep;
+use std::time::Duration;
 use tauri::Manager;
 use tauri::Theme;
 use window_vibrancy::apply_mica;
@@ -29,6 +30,13 @@ pub fn run() {
         .setup(|app| {
             let window = app.get_webview_window("main").unwrap();
             let _ = apply_mica(&window, Some(Theme::Dark != Theme::Light));
+
+            tauri::async_runtime::spawn(async move {
+                // adapt sleeping time to be long enough
+                sleep(Duration::from_millis(100));
+                window.show().unwrap();
+            });
+
             Ok(())
         })
         .plugin(tauri_plugin_shell::init())

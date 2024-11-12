@@ -14,7 +14,9 @@
 				"title": "tauri-app",
 				"width": 800,
 				"height": 600,
-				"transparent": true
+				"transparent": true,
+				"visible": false,
+				"decorations": false
 			}
 		],
 		"security": {

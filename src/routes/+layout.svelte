@@ -1,6 +1,7 @@
 <script lang="ts">
 	import "fluent-svelte/theme.css";
 	import { invoke } from "@tauri-apps/api/core";
+	import { getCurrentWindow, getAllWindows, Window } from "@tauri-apps/api/window";
 	import { onMount } from "svelte";
 
 	onMount(async () => {
